@@ -38,7 +38,7 @@ const sendUrok = (dateMessage) => {
     let week = timeFunc.getWeek(dateMessage);
     let date = new Date(dateMessage * 1000);
     // date.setDate(date.getHours());
-    // console.log(date);
+    console.log(date);
     let message = "";
     let eventDay;
     let daysOfWeek;
