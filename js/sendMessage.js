@@ -11,7 +11,7 @@ const sendWeek = (dateMessage) => {
     let week = timeFunc.getWeek((dateMessage));
     let date = new Date((dateMessage * 1000));
     date.setDate(date.getDate() + 1)
-    date.setHours(date.getHours() +11);//Время для оригона
+    date.setHours(date.getHours() +7);//Время для оригона
     for (let typeWeek in pars) {
         if (pars.hasOwnProperty(typeWeek)) {
             if (week == typeWeek) {
@@ -39,7 +39,7 @@ const sendUrok = (dateMessage) => {
     let week = timeFunc.getWeek(dateMessage);
     let date = new Date(dateMessage * 1000);
     // date.setDate(date.getHours());
-    date.setHours(date.getHours() +11);//Время для оригона
+    date.setHours(date.getHours() +7);//Время для оригона
     let message = "";
     let eventDay;
     let daysOfWeek;
@@ -73,7 +73,7 @@ let result = [1];
 const indexOfPara = (dateMessage) => {
     // console.log(dateMessage);
     let now = new Date(dateMessage * 1000);
-    now.setHours(now.getHours() +11);//Время для оригона
+    now.setHours(now.getHours() +7);//Время для оригона
     console.log(now);
     // console.log(now.getHours());
     const timeRanges = [
@@ -109,7 +109,7 @@ const sendTomorrow = (dateMessage) => {
     let week = timeFunc.getWeek((dateMessage));
     let date = new Date((dateMessage * 1000));
     date.setDate(date.getDate() + 1)
-    date.setHours(date.getHours() +11);//Время для оригона
+    date.setHours(date.getHours() +7);//Время для оригона
     for (let typeWeek in pars) {
         if (pars.hasOwnProperty(typeWeek)) {
             if (week == typeWeek) {
@@ -139,7 +139,7 @@ const sendYesterday = (dateMessage) => {
     let message = "";
     let week = timeFunc.getWeek((dateMessage));
     let date = new Date((dateMessage * 1000));
-    date.setHours(date.getHours() +11);//Время для оригона
+    date.setHours(date.getHours() +7);//Время для оригона
     for (let typeWeek in pars) {
         if (pars.hasOwnProperty(typeWeek)) {
             if (week == typeWeek) {
