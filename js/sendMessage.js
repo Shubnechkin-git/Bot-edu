@@ -38,7 +38,7 @@ const sendUrok = (dateMessage) => {
     let week = timeFunc.getWeek(dateMessage);
     let date = new Date(dateMessage * 1000);
     // date.setDate(date.getHours());
-    console.log(date);
+
     let message = "";
     let eventDay;
     let daysOfWeek;
@@ -73,7 +73,7 @@ const indexOfPara = (dateMessage) => {
     // console.log(dateMessage);
     let now = new Date(dateMessage * 1000);
     now.setHours(now.getHours() +11);//Время для оригона
-
+    console.log(date);
     // console.log(now.getHours());
     const timeRanges = [
         { start: new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 30), end: new Date(now.getFullYear(), now.getMonth(), now.getDate(), 10, 0) },
