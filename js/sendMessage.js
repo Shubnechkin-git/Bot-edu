@@ -2,7 +2,6 @@ let timeFunc = require('./time');
 let miscFunc = require('./misc');
 
 var fs = require('fs');
-const { log } = require('console');
 
 let list = fs.readFileSync('list.json');
 let pars = JSON.parse(list);
@@ -11,9 +10,7 @@ const sendWeek = (dateMessage) => {
     let message = "";
     let week = timeFunc.getWeek((dateMessage));
     let date = new Date((dateMessage * 1000));
-    
     date.setDate(date.getDate() + 1)
-    date.setHours(now.getHours() +11);//Время для оригона
     for (let typeWeek in pars) {
         if (pars.hasOwnProperty(typeWeek)) {
             if (week == typeWeek) {
@@ -40,9 +37,8 @@ const sendWeek = (dateMessage) => {
 const sendUrok = (dateMessage) => {
     let week = timeFunc.getWeek(dateMessage);
     let date = new Date(dateMessage * 1000);
-
-    date.setHours(now.getHours() +11);//Время для оригона
-    console.log(date);
+    // date.setDate(date.getHours());
+    // console.log(date);
     let message = "";
     let eventDay;
     let daysOfWeek;
@@ -112,7 +108,6 @@ const sendTomorrow = (dateMessage) => {
     let week = timeFunc.getWeek((dateMessage));
     let date = new Date((dateMessage * 1000));
     date.setDate(date.getDate() + 1)
-    date.setHours(now.getHours() +11);//Время для оригона
     for (let typeWeek in pars) {
         if (pars.hasOwnProperty(typeWeek)) {
             if (week == typeWeek) {
@@ -142,7 +137,6 @@ const sendYesterday = (dateMessage) => {
     let message = "";
     let week = timeFunc.getWeek((dateMessage));
     let date = new Date((dateMessage * 1000));
-    date.setHours(now.getHours() +11);//Время для оригона
     for (let typeWeek in pars) {
         if (pars.hasOwnProperty(typeWeek)) {
             if (week == typeWeek) {
