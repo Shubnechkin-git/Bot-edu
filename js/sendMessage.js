@@ -74,7 +74,7 @@ const indexOfPara = (dateMessage) => {
     // console.log(dateMessage);
     let now = new Date(dateMessage * 1000);
     now.setHours(now.getHours() + 4);//Время для оригона
-    console.log(now);
+    // console.log(now);
     // console.log(now.getHours());
     const timeRanges = [
         { start: new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 30), end: new Date(now.getFullYear(), now.getMonth(), now.getDate(), 10, 0) },

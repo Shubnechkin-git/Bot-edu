@@ -1,5 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 
+const db = require('./js/db');
+
 const timeFunc = require('./js/time');
 const sendFunc = require('./js/sendMessage');
 const miscFunc = require('./js/misc');
@@ -24,6 +26,8 @@ bot.on('message', (msg) => {
     const chatId = msg.chat.id;
     var date = new Date(msg.date * 1000);
 
+    db.insertNewUserToBase(chatId, msg.chat.username);
+    db.countMessages(chatId);
     if (msg.text != "/list" && msg.text != "Всё расписание" && msg.text != "Текущая пара" && msg.text != "Расписание на сегодня" && msg.text != "Расписание на завтра" && msg.text != "Расписание на неделю") {
         bot.sendMessage(chatId, `${msg.chat.first_name}, для получения расписания нажми на кнопку.`,
             miscFunc.keyboards()
@@ -65,3 +69,5 @@ bot.on('message', (msg) => {
 
     fs.appendFileSync("./users_log/" + msg.chat.username + ".txt", `${date.getHours() + ':' + date.getMinutes() + ' ' + date.getDay() + '.' + date.getMonth() + '.' + date.getFullYear()}, ${msg.chat.first_name + ' ' + msg.chat.last_name + ' ' + msg.chat.username + '(' + msg.chat.id + '): ' + msg.text}\n`);
 });
+
+//id	chatId	username	messages	dateOfnotification	sendNotification
