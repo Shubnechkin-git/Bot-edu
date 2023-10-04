@@ -2,11 +2,11 @@ const mysql = require('mysql2');
 
 // Создайте подключение к базе данных
 const connection = mysql.createConnection({
-    host: 'containers-us-west-56.railway.app',
+    host: 'containers-us-west-107.railway.app',
     user: 'root',
-    password: '74Nshn5TkIJb2IdFXCJl',
+    password: 'eecGMWTV8I9FuVTXQSy7',
     database: 'railway',
-    port: '6250'
+    port: '7479'
 });
 
 // Подключение к базе данных
@@ -70,11 +70,3 @@ const countMessages = (chatId) => {
 module.exports = {
     insertNewUserToBase, getUserOfBase, countMessages
 }
-
-// connection.query('SELECT * FROM Users', (err, results) => {
-//     if (err) {
-//         console.error('Ошибка выполнения запроса:', err);
-//     } else {
-//         console.log('Результаты запроса:', results);
-//     }
-// });
