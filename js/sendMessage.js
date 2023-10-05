@@ -1,5 +1,7 @@
-let list = fs.readFileSync('list.json');
-let pars = JSON.parse(list);
+const fs = require('fs');
+const timeFunc = require('./time');
+const list = fs.readFileSync('./list.json');
+const pars = JSON.parse(list);
 
 const sendWeek = (dateMessage) => {
     let message = "";
