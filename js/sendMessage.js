@@ -58,7 +58,7 @@ const sendUrok = (dateMessage) => {
                 for (time in times) {
                     if (times.hasOwnProperty(time)) {
                         if (indexOfPara(dateMessage).toString() == time)
-                            message = `\nВремя: ${createMessage(result)}\nПара: ${times[time]}`;
+                            message = `\n⏰ Время: ${createMessage(result)}\n📚 Пара: ${times[time]}`;
                     }
                 }
             }
