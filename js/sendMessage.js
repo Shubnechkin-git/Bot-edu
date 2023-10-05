@@ -58,7 +58,17 @@ const sendUrok = (dateMessage) => {
                 for (time in times) {
                     if (times.hasOwnProperty(time)) {
                         if (indexOfPara(dateMessage).toString() == time)
-                            message = `${addEmojyMessages(time)}\n⏰ Время: ${createMessage(result)}\n📚 Предмет: ${times[time]}`;
+                            message = `\nТекущая пара:${addEmojyMessages(time)}\n⏰ Время: ${createMessage(result)}\n📚 Предмет: ${times[time]}`;
+                        if ((indexOfPara(dateMessage)).toString() + 1 == time + 1) {
+                            console.log(`${result[0]}`);
+                            if (times[Number(time) + 1] !== undefined) {
+                                indexOfPara(dateMessage, 1)
+                                message += `${addEmojyMessages(time, 1)}\n⏰ Время: ${createMessage(result)}\n📚 Предмет: ${times[Number(time) + 1]}`;
+                            } else {
+                                indexOfPara(dateMessage, 1)
+                                message += `${addEmojyMessages(time, 1)} Окно`;
+                            }
+                        }
                     }
                 }
             }
@@ -70,10 +80,14 @@ const sendUrok = (dateMessage) => {
 
 let result = [1];
 
-const indexOfPara = (dateMessage) => {
+const indexOfPara = (dateMessage, k = 0) => {
     // console.log(dateMessage);
     let now = new Date(dateMessage * 1000);
-    now.setHours(now.getHours() + 4);//Время для оригона
+    if (k == 0) {
+        now.setHours(now.getHours() + 4);//Время для оригона
+    } else if (k == 1) {
+        now.setHours(now.getHours() + 3);//Время для оригона
+    }
     // console.log(now);
     // console.log(now.getHours());
     const timeRanges = [
@@ -135,20 +149,32 @@ const sendTomorrow = (dateMessage) => {
     return message;
 }
 
-const addEmojyMessages = (time) => {
+const addEmojyMessages = (time, k = 0) => {
     let emojys = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣']
     let emojy = "";
-    for (i = 0; i < emojys.length; i++) {
-        if (Number(time) == Number(i + 1) && i < emojys.length) {
-            console.log(Number(time));
-            emojy = emojys[i];
-            return `\n\n${emojy} Пара ${i + 1}:`;
-        } else if (Number(time) == Number(i) && i == emojys.length) {
-            console.log(Number(time));
-            emojy = emojys[i];
-            return `\n\n${emojy} Пара ${i + 1}:`;
+    let message = "";
+    if (k == 0)
+        for (i = 0; i < emojys.length; i++) {
+            if (Number(time) == Number(i + 1) && i < emojys.length) {
+                emojy = emojys[i];
+                return `\n\n${emojy} Пара ${i + 1}:`;
+            } else if (Number(time) == Number(i) && i == emojys.length) {
+                emojy = emojys[i];
+                message += `\n\n${emojy} Пара ${i + 1}:`;
+            }
+        }
+    if (k == 1) {
+        for (i = 0; i < emojys.length; i++) {
+            if (Number(time) + 1 == Number(i + 1) && i < emojys.length) {
+                emojy = emojys[i];
+                message += `\n\nСледующая пара: \n\n${emojy} Пара ${i + 1}:`;
+            } else if (Number(time) + 1 == Number(i) && i == emojys.length) {
+                emojy = emojys[i];
+                message += `\n\nСледующая пара: \n\n${emojy} Пара ${i + 1}:`;
+            }
         }
     }
+    return message;
 }
 
 const sendYesterday = (dateMessage) => {
