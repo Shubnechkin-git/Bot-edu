@@ -19,11 +19,11 @@ const sendWeek = (dateMessage) => {
                 let daysOfWeek = pars[typeWeek];
                 for (day in daysOfWeek) {
                     if (daysOfWeek.hasOwnProperty(day)) {
-                        message += `\n\nДень: ${day}`;
+                        message += `\n\n📆 День: ${day} \n\n🕒 Расписание: `;
                         let times = daysOfWeek[day];
                         for (time in times) {
                             if (times.hasOwnProperty(time)) {
-                                message += `\nВремя: ${timeFunc.getTime(time)}\nПара: ${times[time]}`;
+                                message += `${addEmojyMessages(time)}\n⏰ Время: ${timeFunc.getTime(time)}\n📚 Предмет: ${times[time]}`;
                             }
                         }
                     }
