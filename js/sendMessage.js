@@ -58,7 +58,7 @@ const sendUrok = (dateMessage) => {
                 for (time in times) {
                     if (times.hasOwnProperty(time)) {
                         if (indexOfPara(dateMessage).toString() == time)
-                            message = `\n⏰ Время: ${createMessage(result)}\n📚 Пара: ${times[time]}`;
+                            message = `${addEmojyMessages(time)}\n⏰ Время: ${createMessage(result)}\n📚 Предмет: ${times[time]}`;
                     }
                 }
             }
@@ -122,7 +122,7 @@ const sendTomorrow = (dateMessage) => {
                             let times = daysOfWeek[day];
                             for (time in times) {
                                 if (times.hasOwnProperty(time)) {
-                                    message += `\n\n⏰ Время: ${timeFunc.getTime(time)}\n📚 Пара: ${times[time]}`;
+                                    message += `${addEmojyMessages(time)}\n⏰ Время: ${timeFunc.getTime(time)}\n📚 Предмет: ${times[time]}`;
                                 }
                             }
                         }
@@ -133,6 +133,22 @@ const sendTomorrow = (dateMessage) => {
     }
     if (message.length == 0) message = "Занятия не проводятся!";
     return message;
+}
+
+const addEmojyMessages = (time) => {
+    let emojys = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣']
+    let emojy = "";
+    for (i = 0; i < emojys.length; i++) {
+        if (Number(time) == Number(i + 1) && i < emojys.length) {
+            console.log(Number(time));
+            emojy = emojys[i];
+            return `\n\n${emojy} Пара ${i + 1}:`;
+        } else if (Number(time) == Number(i) && i == emojys.length) {
+            console.log(Number(time));
+            emojy = emojys[i];
+            return `\n\n${emojy} Пара ${i + 1}:`;
+        }
+    }
 }
 
 const sendYesterday = (dateMessage) => {
@@ -153,7 +169,7 @@ const sendYesterday = (dateMessage) => {
                             let times = daysOfWeek[day];
                             for (time in times) {
                                 if (times.hasOwnProperty(time)) {
-                                    message += `\n\n⏰ Время: ${timeFunc.getTime(time)}\n📚 Пара: ${times[time]}`;
+                                    message += `${addEmojyMessages(time)}\n⏰ Время: ${timeFunc.getTime(time)}\n📚 Предмет: ${times[time]}`;
                                 }
                             }
                         }
@@ -174,11 +190,11 @@ const sendAll = () => {
             let daysOfWeek = pars[typeWeek];
             for (day in daysOfWeek) {
                 if (daysOfWeek.hasOwnProperty(day)) {
-                    message += `\n\nДень: ${day} \n\n🕒 Расписание: `;
+                    message += `\n\n📆 День: ${day} \n\n🕒 Расписание: `;
                     let times = daysOfWeek[day];
                     for (time in times) {
                         if (times.hasOwnProperty(time)) {
-                            message += `\n\n⏰ Время: ${timeFunc.getTime(time)}\n📚 Пара: ${times[time]}`;
+                            message += `${addEmojyMessages(time)}\n⏰ Время: ${timeFunc.getTime(time)}\n📚 Предмет: ${times[time]}`;
                         }
                     }
                 }

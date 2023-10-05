@@ -67,5 +67,5 @@ bot.on('message', (msg) => {
         catch (e) { console.log("Ошибка! ", e); }
     }
 
-    fs.appendFileSync("./users_log/" + msg.chat.username + ".txt", `${date.getHours() + ':' + date.getMinutes() + ' ' + date.getDay() + '.' + date.getMonth() + '.' + date.getFullYear()}, ${msg.chat.first_name + ' ' + msg.chat.last_name + ' ' + msg.chat.username + '(' + msg.chat.id + '): ' + msg.text}\n`);
+    // fs.appendFileSync("./users_log/" + msg.chat.username + ".txt", `${date.getHours() + ':' + date.getMinutes() + ' ' + date.getDay() + '.' + date.getMonth() + '.' + date.getFullYear()}, ${msg.chat.first_name + ' ' + msg.chat.last_name + ' ' + msg.chat.username + '(' + msg.chat.id + '): ' + msg.text}\n`);
 });
