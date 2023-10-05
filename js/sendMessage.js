@@ -1,8 +1,3 @@
-let timeFunc = require('./time');
-let miscFunc = require('./misc');
-
-var fs = require('fs');
-
 let list = fs.readFileSync('list.json');
 let pars = JSON.parse(list);
 
@@ -23,7 +18,9 @@ const sendWeek = (dateMessage) => {
                         let times = daysOfWeek[day];
                         for (time in times) {
                             if (times.hasOwnProperty(time)) {
-                                message += `${addEmojyMessages(time)}\n⏰ Время: ${timeFunc.getTime(time)}\n📚 Предмет: ${times[time]}`;
+                                if (times[time].toString() !== "Окно")
+                                    message += `${addEmojyMessages(time)}\n⏰ Время: ${timeFunc.getTime(time)}\n📚 Предмет: ${times[time]}`;
+                                else message += `${addEmojyMessages(time)} Окно\n⏰ Время: ${timeFunc.getTime(time)}`;
                             }
                         }
                     }
@@ -38,8 +35,7 @@ const sendWeek = (dateMessage) => {
 const sendUrok = (dateMessage) => {
     let week = timeFunc.getWeek(dateMessage);
     let date = new Date(dateMessage * 1000);
-    // date.setDate(date.getHours());
-    date.setHours(date.getHours() + 4);//Время для оригона
+    date.setHours(date.getHours() - 4);//Время для оригона
     let message = "";
     let eventDay;
     let daysOfWeek;
@@ -64,9 +60,9 @@ const sendUrok = (dateMessage) => {
                             if (times[Number(time) + 1] !== undefined) {
                                 indexOfPara(dateMessage, 1)
                                 message += `${addEmojyMessages(time, 1)}\n⏰ Время: ${createMessage(result)}\n📚 Предмет: ${times[Number(time) + 1]}`;
-                            } else {
-                                indexOfPara(dateMessage, 1)
-                                message += `${addEmojyMessages(time, 1)} Окно`;
+                            }
+                            else if (times[Number(time) + 1] == undefined) {
+                                message += "\n\nСледующая пара: занятия не проводятся!"
                             }
                         }
                     }
@@ -81,15 +77,14 @@ const sendUrok = (dateMessage) => {
 let result = [1];
 
 const indexOfPara = (dateMessage, k = 0) => {
-    // console.log(dateMessage);
+
     let now = new Date(dateMessage * 1000);
     if (k == 0) {
         now.setHours(now.getHours() + 4);//Время для оригона
     } else if (k == 1) {
         now.setHours(now.getHours() + 3);//Время для оригона
     }
-    // console.log(now);
-    // console.log(now.getHours());
+
     const timeRanges = [
         { start: new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 30), end: new Date(now.getFullYear(), now.getMonth(), now.getDate(), 10, 0) },
         { start: new Date(now.getFullYear(), now.getMonth(), now.getDate(), 10, 0), end: new Date(now.getFullYear(), now.getMonth(), now.getDate(), 11, 40) },
@@ -100,7 +95,6 @@ const indexOfPara = (dateMessage, k = 0) => {
         { start: new Date(now.getFullYear(), now.getMonth(), now.getDate(), 19, 0), end: new Date(now.getFullYear(), now.getMonth(), now.getDate(), 20, 30) },
     ];
 
-    // Проверяем каждый диапазон времени
     for (let i = 0; i < timeRanges.length; i++) {
         const startRange = timeRanges[i].start;
         const endRange = timeRanges[i].end;
@@ -136,7 +130,9 @@ const sendTomorrow = (dateMessage) => {
                             let times = daysOfWeek[day];
                             for (time in times) {
                                 if (times.hasOwnProperty(time)) {
-                                    message += `${addEmojyMessages(time)}\n⏰ Время: ${timeFunc.getTime(time)}\n📚 Предмет: ${times[time]}`;
+                                    if (times[time].toString() !== "Окно")
+                                        message += `${addEmojyMessages(time)}\n⏰ Время: ${timeFunc.getTime(time)}\n📚 Предмет: ${times[time]}`;
+                                    else message += `${addEmojyMessages(time)} Окно\n⏰ Время: ${timeFunc.getTime(time)}`;
                                 }
                             }
                         }
@@ -195,7 +191,9 @@ const sendYesterday = (dateMessage) => {
                             let times = daysOfWeek[day];
                             for (time in times) {
                                 if (times.hasOwnProperty(time)) {
-                                    message += `${addEmojyMessages(time)}\n⏰ Время: ${timeFunc.getTime(time)}\n📚 Предмет: ${times[time]}`;
+                                    if (times[time].toString() !== "Окно")
+                                        message += `${addEmojyMessages(time)}\n⏰ Время: ${timeFunc.getTime(time)}\n📚 Предмет: ${times[time]}`;
+                                    else message += `${addEmojyMessages(time)} Окно\n⏰ Время: ${timeFunc.getTime(time)}`;
                                 }
                             }
                         }
@@ -220,7 +218,9 @@ const sendAll = () => {
                     let times = daysOfWeek[day];
                     for (time in times) {
                         if (times.hasOwnProperty(time)) {
-                            message += `${addEmojyMessages(time)}\n⏰ Время: ${timeFunc.getTime(time)}\n📚 Предмет: ${times[time]}`;
+                            if (times[time].toString() !== "Окно")
+                                message += `${addEmojyMessages(time)}\n⏰ Время: ${timeFunc.getTime(time)}\n📚 Предмет: ${times[time]}`;
+                            else message += `${addEmojyMessages(time)} Окно\n⏰ Время: ${timeFunc.getTime(time)}`;
                         }
                     }
                 }
