@@ -118,11 +118,11 @@ const sendTomorrow = (dateMessage) => {
                 for (day in daysOfWeek) {
                     if (daysOfWeek.hasOwnProperty(day)) {
                         if (timeFunc.dateGetDay(date) == day) {
-                            message = `\n\nДень: ${day}`;
+                            message = `\n\n📆 День: \n\n🕒 Расписание:${day}`;
                             let times = daysOfWeek[day];
                             for (time in times) {
                                 if (times.hasOwnProperty(time)) {
-                                    message += `\nВремя: ${timeFunc.getTime(time)}\nПара: ${times[time]}`;
+                                    message += `\n\n⏰ Время: ${timeFunc.getTime(time)}\n\n📚 Пара: ${times[time]}`;
                                 }
                             }
                         }
@@ -148,11 +148,11 @@ const sendYesterday = (dateMessage) => {
                 for (day in daysOfWeek) {
                     if (daysOfWeek.hasOwnProperty(day)) {
                         if (timeFunc.dateGetDay(date) == day) {
-                            message = `\n\nДень: ${day}`;
+                            message = `\n\n📆 День:\n\n🕒 Расписание: ${day}`;
                             let times = daysOfWeek[day];
                             for (time in times) {
                                 if (times.hasOwnProperty(time)) {
-                                    message += `\nВремя: ${timeFunc.getTime(time)}\nПара: ${times[time]}`;
+                                    message += `\n\n⏰ Время: ${timeFunc.getTime(time)}\n\n📚 Пара: ${times[time]}`;
                                 }
                             }
                         }
