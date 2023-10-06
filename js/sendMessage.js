@@ -84,7 +84,7 @@ const indexOfPara = (dateMessage, k = 0) => {
     if (k == 0) {
         now.setHours(now.getHours() + 4);//Время для оригона
     } else if (k == 1) {
-        now.setHours(now.getHours() + 3);//Время для оригона
+        now.setHours(now.getHours() + 5);//Время для оригона
     }
 
     const timeRanges = [
