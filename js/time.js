@@ -26,6 +26,7 @@ const getTime = (index) => {
 
 const getWeek = (dateMessage) => {
     let date = new Date(dateMessage * 1000);
+    date.setHours(date.getHours() + 4);
     const startOfYear = new Date(date.getFullYear(), 0, 1);
     const firstDayOfWeek = 1; // Первый день недели (0 - воскресенье, 1 - понедельник, и т.д.)
     const daysPassed = Math.floor((date - startOfYear) / (24 * 60 * 60 * 1000));
