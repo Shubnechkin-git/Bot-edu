@@ -1,6 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
 
-const db = require('./js/db');
+// const db = require('./js/db');
 
 const timeFunc = require('./js/time');
 const sendFunc = require('./js/sendMessage');
@@ -26,8 +26,8 @@ bot.on('message', (msg) => {
     const chatId = msg.chat.id;
     var date = new Date(msg.date * 1000);
 
-    db.insertNewUserToBase(chatId, msg.chat.username);
-    db.countMessages(chatId);
+    // db.insertNewUserToBase(chatId, msg.chat.username);
+    // db.countMessages(chatId);
     if (msg.text != "/list" && msg.text != "Всё расписание" && msg.text != "Текущая пара" && msg.text != "Расписание на сегодня" && msg.text != "Расписание на завтра" && msg.text != "Расписание на неделю") {
         bot.sendMessage(chatId, `${msg.chat.first_name}, для получения расписания нажми на кнопку.`,
             miscFunc.keyboards()
