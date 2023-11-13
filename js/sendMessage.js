@@ -37,7 +37,7 @@ const sendWeek = (dateMessage) => {
 const sendUrok = (dateMessage) => {
     let week = timeFunc.getWeek(dateMessage);
     let date = new Date(dateMessage * 1000);
-    date.setHours(date.getHours() - 4);//Время для оригона
+    date.setHours(date.getHours() + 4);//Время для оригона
     let message = "";
     let eventDay;
     let daysOfWeek;
@@ -84,7 +84,8 @@ const indexOfPara = (dateMessage, k = 0) => {
     if (k == 0) {
         now.setHours(now.getHours() + 4);//Время для оригона
     } else if (k == 1) {
-        now.setHours(now.getHours() + 3);//Время для оригона
+        now.setHours(now.getHours() + 5);//Время для оригона
+        now.setMinutes(now.getMinutes()+30);
     }
 
     const timeRanges = [
