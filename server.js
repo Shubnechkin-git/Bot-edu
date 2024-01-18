@@ -6,7 +6,7 @@ const timeFunc = require('./js/time');
 const sendFunc = require('./js/sendMessage');
 const miscFunc = require('./js/misc');
 
-const token = '6694286870:AAEAZEExv6BLL0AxhTlwsFZovYyrJos4ln4';
+const token = 'YOUR_TELEGRAM_BOT_TOKEN';
 
 const bot = new TelegramBot(token, { polling: true });
 
